@@ -3,3 +3,5 @@
 [_] Make "amount private"
 [X] Dollar side effects?
 [_] Money rounding?
+[>] equals
+[_] hashCode()
