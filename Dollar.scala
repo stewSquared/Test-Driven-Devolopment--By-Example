@@ -1,6 +1,6 @@
 class Dollar(amount: Int) {
 
-  var amount = 0;
+  var amount = 10;
 
   def times(multiplier: Int) {
   }
