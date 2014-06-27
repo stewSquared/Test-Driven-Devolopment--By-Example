@@ -14,6 +14,14 @@ class MoneySpec extends Specification {
       val product: Dollar = five times 3
       product.amount mustEqual 15
     }
+  }
 
+  "A five dollar object" should {
+
+    val five = new Dollar(5)
+
+    "be equivalent to another five dollar object" in {
+      five mustEqual new Dollar(5)
+    }
   }
 }
