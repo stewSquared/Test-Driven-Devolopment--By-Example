@@ -6,13 +6,13 @@ class MoneySpec extends Specification {
     val five = new Dollar(5)
 
     "equal 10 after it's multiplied by 2" in {
-      five times 2
-      five.amount mustEqual 10
+      val product: Dollar = five times 2
+      product.amount mustEqual 10
     }
 
     "equal 10 after it's multiplied by 2" in {
-      five times 3
-      five.amount mustEqual 15
+      val product: Dollar = five times 3
+      product.amount mustEqual 15
     }
 
   }
