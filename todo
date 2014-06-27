@@ -1,6 +1,6 @@
 [_] $5 + 10 CHF = $10 if rate is 2:1
 [X] $5 * 2 = $10
-[_] Make "amount private"
+[X] Make "amount" private (and immutable, while we're at it)
 [X] Dollar side effects?
 [_] Money rounding?
 [X] equals

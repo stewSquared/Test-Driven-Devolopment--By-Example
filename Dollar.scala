@@ -1,4 +1,4 @@
-class Dollar(var amount: Int) {
+class Dollar(private val amount: Int) {
 
   def times(multiplier: Int) = new Dollar(amount * multiplier)
 
