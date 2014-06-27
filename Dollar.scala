@@ -1,8 +1,5 @@
 class Dollar(var amount: Int) {
 
-  def times(multiplier: Int) = {
-    amount *= multiplier
-    null
-  }
+  def times(multiplier: Int) = new Dollar(amount * multiplier)
 
 }
