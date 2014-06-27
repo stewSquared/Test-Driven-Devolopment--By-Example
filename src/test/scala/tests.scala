@@ -6,11 +6,11 @@ class MoneySpec extends Specification {
     val five = new Dollar(5)
 
     // test multiplication
-    "equal 10 after it's multiplied by 2" in {
+    "equal 10 Dollars after it's multiplied by 2" in {
       five times 2 mustEqual new Dollar(10)
     }
 
-    "equal 10 after it's multiplied by 2" in {
+    "equal 10 Dollars after it's multiplied by 2" in {
       five times 3 mustEqual new Dollar(15)
     }
 
@@ -23,4 +23,19 @@ class MoneySpec extends Specification {
       five mustNotEqual new Dollar(6)
     }
   }
+
+  "A five franc object" should {
+
+    val five = new Franc(5)
+
+    // test multiplication
+    "equal 10 Francs after it's multiplied by 2" in {
+      five times 2 mustEqual new Franc(10)
+    }
+
+    "equal 10 Francs after it's multiplied by 2" in {
+      five times 3 mustEqual new Franc(15)
+    }
+  }
+
 }
