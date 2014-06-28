@@ -5,21 +5,15 @@ class MoneySpec extends Specification {
 
     val five = new Dollar(5)
 
-    // test multiplication
-    "equal 10 Dollars after it's multiplied by 2" in {
+    // test multiplication, immutability
+    "equal n*5 Dollars after it's multiplied by n" in {
       five times 2 mustEqual new Dollar(10)
-    }
-
-    "equal 10 Dollars after it's multiplied by 2" in {
       five times 3 mustEqual new Dollar(15)
     }
 
     // test equality
-    "be equivalent to another five dollar object" in {
+    "only be equivalent to another five dollar object" in {
       five mustEqual new Dollar(5)
-    }
-
-    "not be equivalent to a six dollar object" in {
       five mustNotEqual new Dollar(6)
     }
   }
@@ -28,14 +22,16 @@ class MoneySpec extends Specification {
 
     val five = new Franc(5)
 
-    // test multiplication
-    "equal 10 Francs after it's multiplied by 2" in {
+    // test multiplication, immutability
+    "equal n*5 Francs after it's multiplied by n" in {
       five times 2 mustEqual new Franc(10)
-    }
-
-    "equal 10 Francs after it's multiplied by 2" in {
       five times 3 mustEqual new Franc(15)
     }
-  }
 
+    // test equality
+    "only be equivalent to another five franc object" in {
+      five mustEqual new Franc(5)
+      five mustNotEqual new Franc(6)
+    }
+  }
 }
