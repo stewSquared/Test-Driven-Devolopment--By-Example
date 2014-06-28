@@ -11,4 +11,5 @@
 [_] Dollar/Franc duplication
 [X] Common equals
 [_] Common times
-[>] Compare Francs with Dollars
+[X] Compare Francs with Dollars
+[_] Currency?
