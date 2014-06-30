@@ -1,7 +1,5 @@
-class Dollar(amount: Int) extends Money(amount) {
+class Dollar(amount: Int, val currency: String) extends Money(amount) {
 
-  val currency = "USD"
-
-  def times(multiplier: Int): Money = new Dollar(amount * multiplier)
+  def times(multiplier: Int): Money = Money.dollar(amount * multiplier)
 
 }
