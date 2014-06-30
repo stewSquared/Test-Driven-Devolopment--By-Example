@@ -4,14 +4,14 @@ class MoneySpec extends Specification {
   "When multiplied by n, the amount of the yielded money object" should {
 
     val fiveDollars: Money = Money.dollar(5)
-    val fiveFrancs = new Franc(5)
+    val fiveFrancs = Money.franc(5)
 
     "equal [the original money's amount] * n" in {
       fiveDollars times 2 mustEqual Money.dollar(10)
       fiveDollars times 3 mustEqual Money.dollar(15)
 
-      fiveFrancs times 2 mustEqual new Franc(10)
-      fiveFrancs times 3 mustEqual new Franc(15)
+      fiveFrancs times 2 mustEqual Money.franc(10)
+      fiveFrancs times 3 mustEqual Money.franc(15)
     }
   }
 
@@ -21,12 +21,12 @@ class MoneySpec extends Specification {
       Money.dollar(5) mustNotEqual Money.dollar(6)
     }
     "show francs to be equal iff they have the same amount" in {
-      new Franc(5) mustEqual new Franc(5)
-      new Franc(5) mustNotEqual new Franc(6)
+      Money.franc(5) mustEqual Money.franc(5)
+      Money.franc(5) mustNotEqual Money.franc(6)
     }
     "show two units of differing currency to be unequal"
     "yield false if they are not the same currency, but share the same amount" in {
-      new Franc(1) mustNotEqual Money.dollar(1)
+      Money.franc(1) mustNotEqual Money.dollar(1)
     }
   }
 }
