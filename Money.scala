@@ -1,6 +1,4 @@
-abstract class Money(protected val amount: Int) {
-
-  def currency: String
+abstract class Money(protected val amount: Int, val currency: String) {
 
   override def equals(that: Any) = that match {
     case money: Money => amount == money.amount &&
