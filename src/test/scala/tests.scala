@@ -29,4 +29,12 @@ class MoneySpec extends Specification {
       Money.franc(1) mustNotEqual Money.dollar(1)
     }
   }
+
+  "All money denominations" should {
+    "have currency" in {
+      Money.dollar(1).currency mustEqual "USD"
+      Money.franc(1).currency mustEqual "CHF"
+    }
+  }
+
 }

@@ -1,5 +1,7 @@
 abstract class Money(protected val amount: Int) {
 
+  def currency: String
+
   override def equals(that: Any) = that match {
     case money: Money => amount == money.amount &&
       this.getClass() == that.getClass()
