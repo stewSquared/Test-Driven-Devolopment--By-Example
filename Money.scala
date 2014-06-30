@@ -6,6 +6,8 @@ class Money(protected val amount: Int, val currency: String) {
     case _ => throw new ClassCastException
   }
 
+  override def toString = amount + " " + currency
+
   def times(multiplier: Int): Money = new Money(0, "NONE")
 
 }
