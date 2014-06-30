@@ -1,14 +1,13 @@
 class Money(protected val amount: Int, val currency: String) {
 
   override def equals(that: Any) = that match {
-    case money: Money => amount == money.amount &&
-      this.getClass() == that.getClass()
+    case money: Money => amount == money.amount && currency == money.currency
     case _ => throw new ClassCastException
   }
 
   override def toString = amount + " " + currency
 
-  def times(multiplier: Int): Money = new Money(0, "NONE")
+  def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
 
 }
 
