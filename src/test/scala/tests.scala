@@ -3,7 +3,7 @@ import org.specs2.mutable._
 class MoneySpec extends Specification {
   "When multiplied by n, the amount of the yielded money object" should {
 
-    val fiveDollars = new Dollar(5)
+    val fiveDollars: Money = Money.dollar(5)
     val fiveFrancs = new Franc(5)
 
     "equal [the original money's amount] * n" in {
