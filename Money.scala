@@ -1,4 +1,4 @@
-abstract class Money(protected val amount: Int, val currency: String) {
+class Money(protected val amount: Int, val currency: String) {
 
   override def equals(that: Any) = that match {
     case money: Money => amount == money.amount &&
@@ -6,7 +6,7 @@ abstract class Money(protected val amount: Int, val currency: String) {
     case _ => throw new ClassCastException
   }
 
-  def times(multiplier: Int): Money
+  def times(multiplier: Int): Money = new Money(0, "NONE")
 
 }
 

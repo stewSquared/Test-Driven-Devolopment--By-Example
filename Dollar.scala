@@ -1,5 +1,5 @@
 class Dollar(amount: Int, currency: String) extends Money(amount, currency) {
 
-  def times(multiplier: Int): Money = Money.dollar(amount * multiplier)
+  override def times(multiplier: Int): Money = new Dollar(amount * multiplier, currency)
 
 }

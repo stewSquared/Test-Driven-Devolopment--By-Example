@@ -1,5 +1,5 @@
 class Franc(amount: Int, currency: String) extends Money(amount, currency) {
 
-  def times(multiplier: Int): Money = Money.franc(amount * multiplier)
+  override def times(multiplier: Int): Money = new Franc(amount * multiplier, currency)
 
 }
