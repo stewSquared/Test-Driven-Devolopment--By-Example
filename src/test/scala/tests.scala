@@ -37,4 +37,10 @@ class MoneySpec extends Specification {
     }
   }
 
+  "Different Money classes" should {
+    "be equal if they have the same currency" in {
+      new Money(10, "CHF") mustEqual new Franc(10, "CHF")
+    }
+  }
+
 }
