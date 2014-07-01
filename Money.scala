@@ -12,11 +12,14 @@ class Money(val amount: Int, val currency: String)
 
   def plus(addend: Money): Expression = new Sum(this, addend)
 
+  def reduce(to: String) = this
+
 }
 
 object Money {
 
   def dollar(amount: Int): Money = new Money(amount, "USD")
+
   def franc(amount: Int): Money = new Money(amount, "CHF")
 
 }
