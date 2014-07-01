@@ -28,4 +28,10 @@ class MoneySpec extends Specification {
     }
   }
 
+  "Adding money objects" should {
+    "yield 10 dollars from two 5 dollar objects" in {
+      Money.dollar(5) plus Money.dollar(5) mustEqual Money.dollar(10)
+    }
+  }
+
 }

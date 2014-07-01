@@ -1,16 +1,2 @@
 [_] $5 + 10 CHF = $10 if rate is 2:1
-[X] $5 * 2 = $10
-[X] Make "amount" private (and immutable, while we're at it)
-[X] Dollar side effects?
-[_] Money rounding?
-[X] equals
-[_] hashCode()
-[_] Equal null
-[_] Equal object
-[X] 5 CHF * 2 = 10 CHF
-[X] Dollar/Franc duplication
-[X] Common equals
-[X] Common times
-[X] Compare Francs with Dollars
-[X] Currency?
-[X] Delete testFrancMultiplication?
+[>] $5 + $5 = $10
