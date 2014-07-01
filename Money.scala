@@ -7,7 +7,9 @@ class Money(protected val amount: Int, val currency: String) {
 
   override def toString = amount + " " + currency
 
-  def times(multiplier: Int): Money = new Money(amount * multiplier, currency)
+  def times(multiplier: Int) = new Money(amount * multiplier, currency)
+
+  def plus(addend: Money) = new Money(amount + addend.amount, currency)
 
 }
 
