@@ -28,15 +28,25 @@ class MoneySpec extends Specification {
     }
   }
 
-  "Adding money objects" should {
+  "The addition of money objects" should {
     val bank: Bank = new Bank
 
-    "yield 10 dollars from two 5 dollar objects" in {
+    "yield a sum object containing the original objects" in {
+      val five: Money = Money.dollar(5)
+      val result: Expression = five plus five
+      val sum: Sum = result match {
+        case s: Sum => s
+        case _ => throw new ClassCastException
+      }
+      //sum.augend mustEqual five and sum.addend mustEqual five
+      (five mustEqual sum.augend) and (five mustEqual sum.addend)
+    }
+
+    "reduce to 10 dollars from two 5 dollar objects" in {
       val five: Money = Money.dollar(5)
       val sum: Expression = five plus five
       val reduced: Money = bank.reduce(sum, "USD")
       reduced mustEqual Money.dollar(10)
     }
   }
-
 }
