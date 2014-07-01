@@ -49,4 +49,16 @@ class MoneySpec extends Specification {
       reduced mustEqual Money.dollar(10)
     }
   }
+
+  // If the currencies in the Sum areall the same,
+  // and the target currency is also th same, then
+  "the result of Bank.reduce(sum)" should {
+    "be a money whose amount is the sum of amounts" in {
+      val sum: Expression = new Sum(Money.dollar(3), Money.dollar(4))
+      val bank: Bank = new Bank
+      val result: Money = bank.reduce(sum, "USD")
+      result mustEqual Money.dollar(7)
+    }
+  }
+
 }

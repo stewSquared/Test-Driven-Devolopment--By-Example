@@ -1,4 +1,4 @@
-class Money(protected val amount: Int, val currency: String)
+class Money(val amount: Int, val currency: String)
     extends Expression {
 
   override def equals(that: Any) = that match {
@@ -10,7 +10,7 @@ class Money(protected val amount: Int, val currency: String)
 
   def times(multiplier: Int) = new Money(amount * multiplier, currency)
 
-  def plus(addend: Money): Expression = new Money(amount + addend.amount, currency)
+  def plus(addend: Money): Expression = new Sum(this, addend)
 
 }
 
