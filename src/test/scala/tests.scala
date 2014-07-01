@@ -29,8 +29,13 @@ class MoneySpec extends Specification {
   }
 
   "Adding money objects" should {
+    val bank: Bank = new Bank
+
     "yield 10 dollars from two 5 dollar objects" in {
-      Money.dollar(5) plus Money.dollar(5) mustEqual Money.dollar(10)
+      val five: Money = Money.dollar(5)
+      val sum: Expression = five plus five
+      val reduced: Money = bank.reduce(sum, "USD")
+      reduced mustEqual Money.dollar(10)
     }
   }
 
