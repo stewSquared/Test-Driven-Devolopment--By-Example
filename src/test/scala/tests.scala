@@ -49,7 +49,7 @@ class MoneySpec extends Specification {
     }
 
     "reduce to 10 dollars from 5 dollars and 10 francs" in {
-      val fiveBucks = Money.dollar(5)
+      val fiveBucks: Expression = Money.dollar(5)
       val tenFrancs: Expression = Money.franc(10)
       val bank: Bank = new Bank
       bank.addRate("CHF", "USD", 2)
@@ -92,5 +92,4 @@ class MoneySpec extends Specification {
       (new Bank).rate("USD", "USD") mustEqual 1
     }
   }
-
 }
