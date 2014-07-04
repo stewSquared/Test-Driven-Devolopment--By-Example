@@ -77,4 +77,12 @@ class MoneySpec extends Specification {
       result mustEqual Money.dollar(1)
     }
   }
+
+  "A new bank" should {
+    "always return a rate of 1 for identical currencies" in {
+      (new Bank).rate("USD", "USD") mustEqual 1
+
+    }
+  }
+
 }
