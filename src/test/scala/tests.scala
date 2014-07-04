@@ -28,17 +28,16 @@ class MoneySpec extends Specification {
     }
   }
 
-  "The addition of money objects" should {
+  "The sum of money objects" should {
     val bank: Bank = new Bank
 
-    "yield a sum object containing the original objects" in {
+    "contain the original objects" in {
       val five: Money = Money.dollar(5)
       val result: Expression = five plus five
       val sum: Sum = result match {
         case s: Sum => s
         case _ => throw new ClassCastException
       }
-      //sum.augend mustEqual five and sum.addend mustEqual five
       (five mustEqual sum.augend) and (five mustEqual sum.addend)
     }
 
@@ -48,6 +47,16 @@ class MoneySpec extends Specification {
       val reduced: Money = bank.reduce(sum, "USD")
       reduced mustEqual Money.dollar(10)
     }
+
+    "reduce to 10 dollars from 5 dollars and 10 francs" in {
+      val fiveBucks: Expression = Money.dollar(5)
+      val tenFrancs: Expression = Money.franc(10)
+      val bank: Bank = new Bank
+      bank.addRate("CHF", "USD", 2)
+      val result: Money = bank.reduce(fiveBucks plus tenFrancs, "USD")
+      result mustEqual Money.dollar(10)
+    }
+
   }
 
   // If the currencies in the Sum areall the same,
@@ -81,7 +90,6 @@ class MoneySpec extends Specification {
   "A new bank" should {
     "always return a rate of 1 for identical currencies" in {
       (new Bank).rate("USD", "USD") mustEqual 1
-
     }
   }
 

@@ -1,4 +1,4 @@
-[_] $5 + 10 CHF = $10 if rate is 2:1
+[>] $5 + 10 CHF = $10 if rate is 2:1
 [X] $5 + $5 = $10
 [_] Return Money from $5 + $5
 [X] Bank.reduce(Money)
