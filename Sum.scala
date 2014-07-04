@@ -5,5 +5,5 @@ class Sum (val augend: Expression, val addend: Expression) extends Expression {
     new Money(amount, to)
   }
 
-  def plus(addend: Expression): Expression = null
+  def plus(addend: Expression): Expression = new Sum(this, addend)
 }
