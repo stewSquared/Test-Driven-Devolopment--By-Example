@@ -69,4 +69,12 @@ class MoneySpec extends Specification {
     }
   }
 
+  "The bank" should {
+    "reduce 2 CHF to 1 USD" in {
+      val bank: Bank = new Bank
+      bank.addRate("CHF", "USD", 2)
+      val result: Money = bank.reduce(Money.franc(2), "USD")
+      result mustEqual Money.dollar(1)
+    }
+  }
 }

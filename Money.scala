@@ -12,8 +12,10 @@ class Money(val amount: Int, val currency: String)
 
   def plus(addend: Money): Expression = new Sum(this, addend)
 
-  def reduce(to: String) = this
-
+  def reduce(bank: Bank, to: String) = {
+    val rate = bank.rate(currency, to)
+    new Money(amount / rate, to)
+  }
 }
 
 object Money {
