@@ -4,4 +4,5 @@ trait Expression {
 
   def plus(addend: Expression): Expression
 
+  def times(multiplier: Int): Expression
 }

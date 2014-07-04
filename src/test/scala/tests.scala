@@ -1,21 +1,33 @@
 import org.specs2.mutable._
 
 class MoneySpec extends Specification {
-  "When multiplied by n, the amount of the yielded money object" should {
+    val five: Money = Money.dollar(5)
+    val fiveBucks: Expression = Money.dollar(5)
+    val tenFrancs: Expression = Money.franc(10)
+    val bank: Bank = new Bank
+    bank.addRate("CHF", "USD", 2)
 
-    val fiveDollars = Money.dollar(5)
-
+  "When an expression is multiplied by n, the result" should {
     "equal the original money object's amount * n" in {
-      fiveDollars times 2 mustEqual Money.dollar(10)
-      fiveDollars times 3 mustEqual Money.dollar(15)
+      fiveBucks times 2 mustEqual Money.dollar(10)
+    }
+
+    "equal the original expression's reduced amount * n" in {
+      val sum: Expression = new Sum(fiveBucks, tenFrancs) times 2
+      val result: Money = bank.reduce(sum, "USD")
+      result mustEqual Money.dollar(20)
     }
   }
 
   "A comparison of two money objects" should {
-    "show them to be equal iff they have the same amount" in {
+    "show them to be equal if they have the same amount/currency" in {
       Money.dollar(5) mustEqual Money.dollar(5)
+    }
+
+    "but NOT show them to be equal if amounts differ" in {
       Money.dollar(5) mustNotEqual Money.dollar(6)
     }
+
     "show two units of differing currency to be unequal" in {
       Money.franc(1) mustNotEqual Money.dollar(1)
     }
@@ -29,12 +41,6 @@ class MoneySpec extends Specification {
   }
 
   "The sum of two expressions" should {
-    val five: Money = Money.dollar(5)
-    val fiveBucks: Expression = Money.dollar(5)
-    val tenFrancs: Expression = Money.franc(10)
-    val bank: Bank = new Bank
-    bank.addRate("CHF", "USD", 2)
-
     "contain the original objects" in {
       val result: Expression = five plus five
       val sum: Sum = result match {
