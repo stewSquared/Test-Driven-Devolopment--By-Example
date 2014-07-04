@@ -16,8 +16,9 @@ class Bank {
 
   def reduce(source: Expression, to: String) = source.reduce(this, to)
 
-  def rate(from: String, to: String) = 
-    if (from.equals("CHF") && to.equals("USD")) 2 else 1
+  def rate(from: String, to: String) = rates(new Pair(from, to))
 
-  def addRate(from: String, to: String, rate: Int) = ???
+  def addRate(from: String, to: String, rate: Int) = {
+    rates += (new Pair(from, to) -> rate)
+  }
 }
