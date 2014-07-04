@@ -8,11 +8,11 @@ class MoneySpec extends Specification {
     bank.addRate("CHF", "USD", 2)
 
   "When an expression is multiplied by n, the result" should {
-    "equal the original money object's amount * n" in {
+    "equal the original Money's amount * n" in {
       fiveBucks times 2 mustEqual Money.dollar(10)
     }
 
-    "equal the original expression's reduced amount * n" in {
+    "equal the original Expression's reduced amount * n" in {
       val sum: Expression = new Sum(fiveBucks, tenFrancs) times 2
       val result: Money = bank.reduce(sum, "USD")
       result mustEqual Money.dollar(20)
@@ -20,12 +20,9 @@ class MoneySpec extends Specification {
   }
 
   "A comparison of two money objects" should {
-    "show them to be equal if they have the same amount/currency" in {
-      Money.dollar(5) mustEqual Money.dollar(5)
-    }
-
-    "but NOT show them to be equal if amounts differ" in {
-      Money.dollar(5) mustNotEqual Money.dollar(6)
+    "show them to be equal iff they have the same amount/currency" in {
+      (Money.dollar(5) mustEqual Money.dollar(5)) &&
+      (Money.dollar(5) mustNotEqual Money.dollar(6))
     }
 
     "show two units of differing currency to be unequal" in {
@@ -35,19 +32,18 @@ class MoneySpec extends Specification {
 
   "All money denominations" should {
     "have currency" in {
-      Money.dollar(1).currency mustEqual "USD"
-      Money.franc(1).currency mustEqual "CHF"
+      (Money.dollar(1).currency mustEqual "USD") &&
+      (Money.franc(1).currency mustEqual "CHF")
     }
   }
 
   "The sum of two expressions" should {
-    "contain the original objects" in {
+    "contain the original objects as addend and augend" in {
       val result: Expression = five plus five
       val sum: Sum = result match {
         case s: Sum => s
         case _ => throw new ClassCastException
       }
-
       (five mustEqual sum.augend) and (five mustEqual sum.addend)
     }
 
@@ -81,26 +77,23 @@ class MoneySpec extends Specification {
     }
   }
 
-  "The result of Bank.reduce(Money)" should {
-    "be equal to a money of the same currency and amount" in {
-      val bank: Bank = new Bank
-      val result: Money = bank.reduce(Money.dollar(1), "USD")
-      result mustEqual Money.dollar(1)
-    }
-  }
-
-  "The bank" should {
-    "reduce 2 CHF to 1 USD" in {
-      val bank: Bank = new Bank
+  "A new bank" should {
+    "reduce 2 CHF to 1 USD if the exchange rate is 2:1" in {
+      val rate = 2
+      val bank = new Bank
       bank.addRate("CHF", "USD", 2)
       val result: Money = bank.reduce(Money.franc(2), "USD")
       result mustEqual Money.dollar(1)
     }
-  }
 
-  "A new bank" should {
-    "always return a rate of 1 for identical currencies" in {
-      (new Bank).rate("USD", "USD") mustEqual 1
+    "reduce 1 USD to 1 USD" in {
+      val result: Money = (new Bank).reduce(Money.dollar(1), "USD")
+      result mustEqual Money.dollar(1)
+    }
+
+    " return a rate of 1 for identical currencies" in {
+      ((new Bank).rate("USD", "USD") mustEqual 1) &&
+      ((new Bank).rate("EUR", "EUR") mustEqual 1)
     }
   }
 }
