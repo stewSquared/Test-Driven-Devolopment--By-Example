@@ -28,33 +28,38 @@ class MoneySpec extends Specification {
     }
   }
 
-  "The sum of money objects" should {
+  "The sum of two expressions" should {
+    val five: Money = Money.dollar(5)
+    val fiveBucks: Expression = Money.dollar(5)
+    val tenFrancs: Expression = Money.franc(10)
     val bank: Bank = new Bank
+    bank.addRate("CHF", "USD", 2)
 
     "contain the original objects" in {
-      val five: Money = Money.dollar(5)
       val result: Expression = five plus five
       val sum: Sum = result match {
         case s: Sum => s
         case _ => throw new ClassCastException
       }
+
       (five mustEqual sum.augend) and (five mustEqual sum.addend)
     }
 
     "reduce to 10 dollars from two 5 dollar objects" in {
-      val five: Money = Money.dollar(5)
       val sum: Expression = five plus five
       val reduced: Money = bank.reduce(sum, "USD")
       reduced mustEqual Money.dollar(10)
     }
 
     "reduce to 10 dollars from 5 dollars and 10 francs" in {
-      val fiveBucks: Expression = Money.dollar(5)
-      val tenFrancs: Expression = Money.franc(10)
-      val bank: Bank = new Bank
-      bank.addRate("CHF", "USD", 2)
       val result: Money = bank.reduce(fiveBucks plus tenFrancs, "USD")
       result mustEqual Money.dollar(10)
+    }
+
+    "reduce properly from a sum and money object" in {
+      val sum: Expression = new Sum(fiveBucks, tenFrancs) plus fiveBucks
+      val result: Money = bank.reduce(sum, "USD")
+      result mustEqual Money.dollar(15)
     }
 
   }
